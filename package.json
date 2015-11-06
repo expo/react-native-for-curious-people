@@ -1,0 +1,10 @@
+{
+  "name": "rnfcp",
+  "version": "0.0.0",
+  "description": "Hello Exponent!",
+  "main": "main.js",
+  "author": "brentvatne@gmail.com",
+  "dependencies": {
+    "react-native": "exponentjs/react-native#exp-latest"
+  }
+}
