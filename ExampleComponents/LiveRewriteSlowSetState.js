@@ -1,7 +1,7 @@
 /**
  * Copyright 2015-present 650 Industries. All rights reserved.
  *
- * @providesModule CharacterDroppingSimulator
+ * @providesModule LiveRewriteSlowSetState
  */
 'use strict';
 
@@ -13,7 +13,9 @@ import React, {
   View,
 } from 'react-native';
 
-export default class CharacterDroppingSimulator extends React.Component {
+import doSomeExpensiveOperation from 'doSomeExpensiveOperation';
+
+export default class LiveRewriteSlowSetState extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -21,7 +23,6 @@ export default class CharacterDroppingSimulator extends React.Component {
     this._updateText = this._updateText.bind(this);
     this.state = {
       value: '',
-      lastChange: new Date(),
     };
   }
 
@@ -32,35 +33,28 @@ export default class CharacterDroppingSimulator extends React.Component {
           <TextInput
             value={this.state.value}
             onChangeText={this._updateText}
-            placeholder={this.props.placeholder}
+            placeholder="Type some text here! Wait for it to be uppercased"
             ref={(view) => { this._textInput = view; }}
             style={styles.textInput} />
         </View>
         <Text style={styles.subtitle}>
-          {this.props.subtitle}
+          Simulating a slow setState with live-rewriting
         </Text>
       </View>
     );
   }
 
   _updateText(text) {
-    let { value, lastChange } = this.state;
-    let currentChange = new Date();
-    let n = parseInt(Math.random() * 10);
-    let randomize = n % 2 === 0;
+    let { value } = this.state;
 
-    if (randomize && text.length >= 2 && currentChange - lastChange <= 200) {
-      let newValue = text.substr(0, text.length - 2) + text[text.length - 1];
-      this.setState({value: newValue, lastChange: currentChange});
-    } else {
-      this.setState({value: text, lastChange: currentChange});
-    }
+    doSomeExpensiveOperation();
+    this.setState({value: text.toUpperCase()});
   }
 }
 
 let styles = StyleSheet.create({
   container: {
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 25,
   },
   shadow: {

@@ -1,7 +1,7 @@
 /**
  * Copyright 2015-present 650 Industries. All rights reserved.
  *
- * @providesModule Paragraph
+ * @providesModule CodeBlock
  */
 'use strict';
 
@@ -11,12 +11,12 @@ import React, {
   View,
 } from 'react-native';
 
-export default class Paragraph extends React.Component {
+export default class CodeBlock extends React.Component {
 
   render() {
     return (
-      <View style={styles.paragraph}>
-        <Text style={styles.paragraphText}>
+      <View style={styles.codeBlock}>
+        <Text style={styles.codeBlockText}>
           {this.props.children}
         </Text>
       </View>
@@ -25,10 +25,10 @@ export default class Paragraph extends React.Component {
 }
 
 let styles = StyleSheet.create({
-  paragraph: {
+  codeBlock: {
     marginBottom: 15,
   },
-  paragraphText: {
+  codeBlockText: {
     fontFamily: 'Georgia',
     fontSize: 14,
     lineHeight: 20,
