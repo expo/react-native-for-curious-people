@@ -17,7 +17,7 @@ import CodeBlock from 'CodeBlock';
 
 const exampleCode = `
 <TextInput
-  value={this.state.value}
+  value={this.state.text}
   onChangeText={(text) => this.setState({text})}
   controlled={true} />
 `
