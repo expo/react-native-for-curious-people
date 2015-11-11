@@ -15,6 +15,13 @@ import React, {
 
 import CodeBlock from 'CodeBlock';
 
+const exampleCode = `
+<TextInput
+  value={this.state.value}
+  onChangeText={(text) => this.setState({text})}
+  controlled={true} />
+`
+
 export default class BrokenBehaviourVisualization extends React.Component {
 
   constructor(props, context) {
@@ -27,14 +34,7 @@ export default class BrokenBehaviourVisualization extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <CodeBlock>
-{
-`<TextInput
-    value={this.state.value}
-    onChangeText={(text) => this.setState({text})}
-    controlled={true} />`
-}
-        </CodeBlock>
+        <CodeBlock code={exampleCode} />
 
         {this._renderTable()}
 

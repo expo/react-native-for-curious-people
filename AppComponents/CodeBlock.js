@@ -6,32 +6,40 @@
 'use strict';
 
 import React, {
+  AppRegistry,
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from 'react-native';
 
+import Prism from 'prism';
+
 export default class CodeBlock extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+    };
+  }
 
   render() {
-    return (
-      <View style={styles.codeBlock}>
-        <Text style={styles.codeBlockText}>
-          {this.props.children}
-        </Text>
-      </View>
-    )
-  }
-}
+    let result = Prism.highlight(
+      this.props.code,
+      Prism.languages['javascript'],
+      'javascript'
+    );
 
-let styles = StyleSheet.create({
-  codeBlock: {
-    marginBottom: 15,
-  },
-  codeBlockText: {
-    fontFamily: 'Georgia',
-    fontSize: 14,
-    lineHeight: 20,
-    color: '#363636',
-  },
-});
+    return (
+      <View style={{marginTop: this.props.marginTop, marginBottom: this.props.marginBottom || 15, backgroundColor: 'rgba(0,0,0,0.02)'}}>
+        <ScrollView
+          horizontal
+          bounces={false}
+          contentContainerStyle={{paddingHorizontal: 10}}>
+            <Text style={{fontSize: 13,}}>
+              {result}
+            </Text>
+        </ScrollView>
+      </View>
+    );
+  }
+};
