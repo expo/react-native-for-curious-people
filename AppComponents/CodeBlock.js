@@ -24,7 +24,7 @@ export default class CodeBlock extends React.Component {
     return (
       <View style={{marginTop: this.props.marginTop || 2, marginBottom: this.props.marginBottom || 10, backgroundColor: 'rgba(0,0,0,0.01)', borderRadius: 3}}>
         <ScrollView horizontal bounces={false} contentContainerStyle={{paddingHorizontal: 8}}>
-          <Text style={{fontSize: 13,}}>
+          <Text style={{fontSize: 15,}}>
             {result}
           </Text>
         </ScrollView>

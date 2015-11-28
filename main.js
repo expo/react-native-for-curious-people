@@ -20,6 +20,7 @@ import React, {
 } from 'react-native';
 
 import BrokenBehaviourVisualization from 'BrokenBehaviourVisualization';
+import FixedBehaviourVisualization from 'FixedBehaviourVisualization';
 import CharacterDroppingSimulator from 'CharacterDroppingSimulator';
 import CodeBlock from 'CodeBlock';
 import CommitLink from 'CommitLink';
@@ -122,7 +123,7 @@ class TextInputArticle extends React.Component {
 
           <Heading>Visualizing the solution</Heading>
 
-          <BrokenBehaviourVisualization />
+          <FixedBehaviourVisualization />
 
           <View style={styles.hr} />
 

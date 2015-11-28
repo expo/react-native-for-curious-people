@@ -1,7 +1,7 @@
 /**
  * Copyright 2015-present 650 Industries. All rights reserved.
  *
- * @providesModule BrokenBehaviourVisualization
+ * @providesModule FixedBehaviourVisualization
  */
 'use strict';
 
@@ -22,30 +22,30 @@ const exampleCode = `
   onChangeText={(text) => {
     this.setState({text})
   }}
-  controlled={true} />
+/>
 `
 
 const STEPS = [
   {},
   { input: "User types 'R'",
     js: "Does not receive input until next frame - does nothing.",
-    ui: "'R' is sent to the JS queue",
+    ui: "'R' and eventCount of 1 are sent to the JS queue.",
     display: 'R'},
   { input: "User types 'e'",
-    js: "Receives 'R', sends 'R' back to native as current JS value.",
-    ui: "'Re' is sent to the JS queue. Value is set to 'R' in response to JS update.",
-    display: 'R'},
+    js: "Receives 'R', sends 'R' back to native with eventCount 1.",
+    ui: "'Re' and eventCount of 2 are sent to the JS queue. JS tells native to update to 'R' for eventCount 1, but it is ignored becuase nativeEventCount is currently 2.",
+    display: 'Re'},
   { input: "User types 'a'",
-    js: "Receives 'Re', sends 'Re' back to native as current JS value.",
-    ui: "'Ra' is sent to the JS queue",
-    display: 'Re' },
+    js: "Receives 'Re', sends 'Re' back to native with eventCount 2.",
+    ui: "'Rea' and eventCount of 3 are sent to the JS queue. JS tells native to update to 'Re' for eventCount 2, but it is ignored becuase nativeEventCount is currently 3.",
+    display: 'Rea' },
   { input: "None",
-    js: "Receives 'Ra', sends 'Ra' back to native as current JS value.",
-    ui: "Value is set back to 'Ra' in response to JS update. The 'e' character has been dropped!",
-    display: 'Ra' },
+    js: "Receives 'Rea', sends 'Rea' back to native with eventCount 3.",
+    ui: "Receives 'Rea' with eventCount 3, matching nativeEventCount -- sets value to 'Rea' (no change).",
+    display: 'Rea' },
 ];
 
-export default class BrokenBehaviourVisualization extends React.Component {
+export default class FixedBehaviourVisualization extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -219,7 +219,7 @@ let styles = StyleSheet.create({
   },
 
   row: {
-    height: 80,
+    height: 85,
     flexDirection: 'row',
   },
 
