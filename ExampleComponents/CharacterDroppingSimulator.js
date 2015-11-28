@@ -13,6 +13,8 @@ import React, {
   View,
 } from 'react-native';
 
+import InteractiveScrollView from 'InteractiveScrollView';
+
 export default class CharacterDroppingSimulator extends React.Component {
 
   constructor(props, context) {
@@ -29,7 +31,7 @@ export default class CharacterDroppingSimulator extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.shadow}>
-          <TextInput
+          <InteractiveScrollView.TextInput
             value={this.state.value}
             onChangeText={this._updateText}
             placeholder={this.props.placeholder}

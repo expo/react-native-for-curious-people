@@ -13,6 +13,8 @@ import React, {
   View,
 } from 'react-native';
 
+import InteractiveScrollView from 'InteractiveScrollView';
+
 const CHAR_LIMIT = 5;
 
 export default class MaxLengthExamples extends React.Component {
@@ -43,7 +45,7 @@ export default class MaxLengthExamples extends React.Component {
 
         <View style={{marginBottom: 20}}>
           <View style={styles.shadow}>
-            <TextInput
+            <InteractiveScrollView.TextInput
               value={this.state.setStateValue}
               onChangeText={this._updateSetStateValue}
               style={styles.textInput} />
@@ -60,7 +62,7 @@ export default class MaxLengthExamples extends React.Component {
 
         <View>
           <View style={styles.shadow}>
-            <TextInput
+            <InteractiveScrollView.TextInput
               value={this.state.maxLengthValue}
               onChangeText={(text) => this.setState({maxLengthValue: text})}
               style={styles.textInput}

@@ -15,6 +15,7 @@ import React, {
   StatusBarIOS,
   StyleSheet,
   Text,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
@@ -28,6 +29,7 @@ import LiveRewriteCursorPosition from 'LiveRewriteCursorPosition';
 import Paragraph from 'Paragraph';
 import PersonLink from 'PersonLink';
 import MaxLengthExamples from 'MaxLengthExamples';
+import InteractiveScrollView from 'InteractiveScrollView';
 
 class TextInputArticle extends React.Component {
   constructor(props, context) {
@@ -35,10 +37,17 @@ class TextInputArticle extends React.Component {
     this.state= {};
   }
 
+  componentDidMount() {
+    if (StatusBarIOS) {
+      StatusBarIOS.setHidden(true, 'none');
+    }
+  }
+
   render() {
     return (
       <View style={styles.outerContainer}>
-        <ScrollView
+        <InteractiveScrollView
+          ref={(view) => { this._scrollView = view; }}
           style={styles.articleScrollView}
           contentContainerStyle={styles.articleContentContainer}>
 
@@ -78,7 +87,7 @@ class TextInputArticle extends React.Component {
           <Heading>The JavaScript Bridge</Heading>
 
           <Paragraph>
-            React Native uses a batched, asynchronous bridge. If you need to access a value synchronously, the value has to live on that same side of the bridge. This becomes a bit of a problem in situations where ownership over a value can’t be entirely claimed by one side of the bridge. TextInput is one of these situations.
+            React Native uses a batched, asynchronous bridge. If you need to access a value synchronously from JS or native code, the value has to live on that same side of the bridge. This becomes a bit of a problem in situations where ownership over a value can’t be entirely claimed by one side of the bridge. TextInput is one of these situations.
           </Paragraph>
 
           <Paragraph>
@@ -148,21 +157,21 @@ class TextInputArticle extends React.Component {
           <Text style={styles.attribution}>
             Made for <Text style={styles.exponent}>EXPONENT</Text>
           </Text>
-        </ScrollView>
+        </InteractiveScrollView>
 
-        <View style={styles.navbar}>
-          <Text style={styles.navbarText}>
-            React Native for curious people
-          </Text>
-        </View>
+        <TouchableWithoutFeedback onPress={this._scrollToTop.bind(this)}>
+          <View style={styles.navbar}>
+            <Text style={styles.navbarText}>
+              React Native for curious people
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
 
-  componentDidMount() {
-    if (StatusBarIOS) {
-      StatusBarIOS.setHidden(true, 'none');
-    }
+  _scrollToTop() {
+    this._scrollView.scrollTo(0, 0);
   }
 }
 
@@ -178,7 +187,7 @@ let styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   header: {
-    marginTop: 25,
+    marginTop: 40,
     marginBottom: 5,
   },
   hr: {
@@ -194,8 +203,8 @@ let styles = StyleSheet.create({
     marginBottom: 5,
   },
   headerSubtitleText: {
-    lineHeight: 19,
-    fontSize: 14,
+    lineHeight: 23,
+    fontSize: 16,
     color: '#848484',
   },
   navbar: {

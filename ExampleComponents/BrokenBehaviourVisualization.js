@@ -22,12 +22,28 @@ const exampleCode = `
   controlled={true} />
 `
 
+const STEPS = [
+  { input: "User types 'R'",
+    ui: "'R' is sent to the JS queue",
+    js: "Does not receive input until next frame - does nothing." },
+  { input: "User types 'e'",
+    ui: "'Re' is sent to the JS queue. Value is set to 'R' in response to JS update.",
+    js: "Receives 'R', sends 'R' back to native as current JS value." },
+  { input: "User types 'a'",
+    ui: "'Ra' is sent to the JS queue",
+    js: "Receives 'Re', sends 'Re' back to native as current JS value."},
+  { input: "None",
+    ui: "Value is set back to 'Ra' in response to JS update. The 'e' character has been dropped!",
+    js: "Receives 'Ra', sends 'Ra' back to native as current JS value."},
+];
+
 export default class BrokenBehaviourVisualization extends React.Component {
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
+      step: 0,
     };
   }
 
@@ -50,6 +66,8 @@ export default class BrokenBehaviourVisualization extends React.Component {
   }
 
   _renderTable() {
+    let { step } = this.state;
+
     return (
       <View style={styles.table}>
         <View style={styles.header}>
@@ -65,7 +83,7 @@ export default class BrokenBehaviourVisualization extends React.Component {
             </View>
             <View style={styles.outputCol}>
               <Text>
-                ..
+                {STEPS[step].input}
               </Text>
             </View>
           </View>
@@ -77,7 +95,9 @@ export default class BrokenBehaviourVisualization extends React.Component {
               </Text>
             </View>
             <View style={styles.outputCol}>
-
+              <Text>
+                {STEPS[step].ui}
+              </Text>
             </View>
           </View>
 
@@ -88,7 +108,9 @@ export default class BrokenBehaviourVisualization extends React.Component {
               </Text>
             </View>
             <View style={styles.outputCol}>
-
+              <Text>
+                {STEPS[step].js}
+              </Text>
             </View>
           </View>
         </View>
@@ -139,6 +161,7 @@ let styles = StyleSheet.create({
 
   outputCol: {
     flex: 1,
+    paddingLeft: 5,
     justifyContent: 'center',
   },
 

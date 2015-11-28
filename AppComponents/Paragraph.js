@@ -30,8 +30,8 @@ let styles = StyleSheet.create({
   },
   paragraphText: {
     fontFamily: 'Georgia',
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 18,
+    lineHeight: 26,
     color: '#363636',
   },
 });

@@ -1,10 +1,11 @@
 {
-  "name": "rnfcp",
+  "name": "react-native-for-curious-people",
   "version": "0.0.0",
-  "description": "Hello Exponent!",
+  "description": "Articles about React Native!",
   "main": "main.js",
-  "author": "brentvatne@gmail.com",
+  "author": "brent@exponentjs.com",
   "dependencies": {
-    "react-native": "exponentjs/react-native#exp-latest"
+    "react-native": "exponentjs/react-native#2015-10-08-xde",
+    "react-native-keyboard-spacer": "^0.1.2"
   }
 }

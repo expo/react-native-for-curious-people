@@ -13,6 +13,7 @@ import React, {
   View,
 } from 'react-native';
 
+import InteractiveScrollView from 'InteractiveScrollView';
 import doSomeExpensiveOperation from 'doSomeExpensiveOperation';
 
 export default class LiveRewriteSlowSetState extends React.Component {
@@ -30,7 +31,7 @@ export default class LiveRewriteSlowSetState extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.shadow}>
-          <TextInput
+          <InteractiveScrollView.TextInput
             value={this.state.value}
             onChangeText={this._updateText}
             placeholder="Type some text here! Wait for it to be uppercased"
