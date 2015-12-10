@@ -7,6 +7,7 @@
 
 import React, {
   AppRegistry,
+  BackAndroid,
   PixelRatio,
   StyleSheet,
   View,
@@ -25,12 +26,25 @@ class Main extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    if (BackAndroid) {
+      BackAndroid.addEventListener('hardwareBackPress', () => {
+        if (this._navigator.getCurrentRoutes().length > 1) {
+          this._navigator.pop();
+          return true;
+        }
+
+        return false;
+      });
+    }
+  }
+
   render() {
     let initialRoute = ExRouter.getHomeRoute();
 
     return (
       <ExNavigator
-        ref={component => this._topNavigatorRef = component}
+        ref={component => this._navigator = component}
         initialRoute={initialRoute}
         showNavigationBar={false}
       />

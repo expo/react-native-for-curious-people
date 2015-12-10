@@ -13,13 +13,15 @@ import React, {
   View,
 } from 'react-native';
 
+import Colors from 'Colors';
+
 export default class ArticleLoadingIndicator extends React.Component {
 
   render() {
     if (Platform.OS === 'android') {
       return (
         <View style={styles.loadingContainer}>
-          <ProgressBarAndroid size="Large" />
+          <ProgressBarAndroid styleAttr="Large" color={Colors.brand} />
         </View>
       );
     } else {
@@ -37,5 +39,6 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 100,
+    width: 320,
   },
 });

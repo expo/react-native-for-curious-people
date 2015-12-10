@@ -176,6 +176,7 @@ export default class TextInputArticle extends React.Component {
 
           <Paragraph>
             Another issue with live re-writing is the cursor position: let’s say that we want to add a dash between every character that is input and we enter "ABC", we would see this: |, A|, A-|B, A-C|-B
+            { Platform.OS === 'android' && " -- except you're on Android, so you won't, because it works properly here! If you are interested in why this is the case, you curious devil you, go check out the source!"}
           </Paragraph>
 
           <LiveRewriteCursorPosition />

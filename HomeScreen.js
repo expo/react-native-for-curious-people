@@ -123,6 +123,7 @@ let styles = StyleSheet.create({
   footerContainer: {
     marginTop: 25,
     paddingHorizontal: 30,
+    marginBottom: 60,
   },
   footerText: {
     color: Colors.fadedText,
@@ -163,7 +164,7 @@ let styles = StyleSheet.create({
   heroTitleText: {
     color: '#fff',
     fontSize: 25,
-    lineHeight: 26,
+    lineHeight: Platform.OS === 'ios' ? 26 : 30,
     fontWeight: '700',
   },
   heroSubtitleText: {
@@ -171,26 +172,7 @@ let styles = StyleSheet.create({
     color: '#fff',
     opacity: 0.8,
     fontSize: 18,
-    lineHeight: 20,
+    lineHeight: Platform.OS === 'ios' ? 20 : 24,
     fontWeight: '300',
-  },
-  hr: {
-    backgroundColor: '#000',
-    opacity: 0.1,
-    height: 1.0 / PixelRatio.get(),
-    flex: 1,
-    marginVertical: 15,
-  },
-  headerText: {
-    fontFamily: serif,
-    fontSize: isAndroid ? 30 : 35,
-    fontWeight: isAndroid ? 'bold' : 'normal',
-    lineHeight: 40,
-    marginBottom: 5,
-  },
-  headerSubtitleText: {
-    lineHeight: 25,
-    fontSize: 17,
-    color: '#848484',
   },
 });

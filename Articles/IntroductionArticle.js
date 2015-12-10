@@ -121,7 +121,7 @@ export default class TextInputArticle extends React.Component {
             provide inline demos that actually run using React Native.
           </Paragraph>
 
-          <View style={{width: Dimensions.get('window').width - 30, height: Dimensions.get('window').width, marginVertical: 10,}}>
+          <View style={{width: Dimensions.get('window').width - 30, height: Dimensions.get('window').width, marginTop: 10, marginBottom: 20,}}>
             <TinderExample
               onStartInteraction={this._onStartInteraction.bind(this)}
               onEndInteraction={this._onEndInteraction.bind(this)} />
@@ -148,7 +148,7 @@ export default class TextInputArticle extends React.Component {
         </View>
       );
     } else {
-      return <ArticleLoadingIndicator />
+      return <ArticleLoadingIndicator />;
     }
   }
 

@@ -7,6 +7,7 @@
 
 import React, {
   PixelRatio,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -39,7 +40,7 @@ export default class LiveRewriteCursorPosition extends React.Component {
         </View>
         <Text style={styles.subtitle}>
           When live re-writing changes the length of the text, cursor
-          position doesn’t work as expected.
+          position doesn’t work as expected{Platform.OS === 'android' ? " on iOS. This should work properly for you though!" : "."}
         </Text>
       </View>
     );
