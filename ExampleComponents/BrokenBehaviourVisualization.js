@@ -213,7 +213,6 @@ let styles = StyleSheet.create({
   },
 
   body: {
-
   },
 
   row: {

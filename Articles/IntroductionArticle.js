@@ -10,30 +10,27 @@ import React, {
   Animated,
   AppRegistry,
   Easing,
+  Dimensions,
   Image,
   PixelRatio,
   Platform,
   ScrollView,
   StatusBarIOS,
   StyleSheet,
+  InteractionManager,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
-import BrokenBehaviourVisualization from 'BrokenBehaviourVisualization';
-import FixedBehaviourVisualization from 'FixedBehaviourVisualization';
-import CharacterDroppingSimulator from 'CharacterDroppingSimulator';
+import ArticleLoadingIndicator from 'ArticleLoadingIndicator';
 import CodeBlock from 'CodeBlock';
 import CommitLink from 'CommitLink';
 import Heading from 'Heading';
-import LiveRewriteSlowSetState from 'LiveRewriteSlowSetState';
-import LiveRewriteCursorPosition from 'LiveRewriteCursorPosition';
-import Paragraph from 'Paragraph';
-import PersonLink from 'PersonLink';
-import MaxLengthExamples from 'MaxLengthExamples';
-import NavBar from 'NavBar';
 import InteractiveScrollView from 'InteractiveScrollView';
+import Paragraph from 'Paragraph';
+import NavBar from 'NavBar';
+import TinderExample from 'TinderExample';
 
 import { isIOS, isAndroid } from 'Platforms';
 import { serif } from 'Fonts';
@@ -48,6 +45,10 @@ export default class TextInputArticle extends React.Component {
     if (StatusBarIOS) {
       StatusBarIOS.setHidden(true, 'none');
     }
+
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({isReady: true});
+    });
   }
 
   render() {
@@ -60,115 +61,103 @@ export default class TextInputArticle extends React.Component {
 
           <View style={styles.header}>
             <Text style={styles.headerText}>
-              How TextInput works
+              Read this first!
             </Text>
 
             <Text style={styles.headerSubtitleText}>
-              TextInput is a great component to look at to better
-              understand how the bridge works.. and why it
-              sometimes doesn’t.
+              To find out what this is all about
             </Text>
           </View>
 
           <View style={styles.hr} />
 
-          <Paragraph>
-            If you used React Native when it was first released, you might
-            remember how janky the TextInput component was -- I mean it
-            worked great if you typed slowly and your JS responded
-            immediately, but if you typed quickly or there was any delay on
-            the JS end, you would drop characters. You had to disable the
-            controlled prop on any TextInput to get an acceptable user
-            experience.
-          </Paragraph>
 
-          <CharacterDroppingSimulator
-            exampleText="This is dropping characters"
-            placeholder="Tap in here and type away as quickly as you can"
-            subtitle="An exaggerated simulation of the behavior described above" />
+          {this.renderArticle()}
 
-          <Paragraph>
-            Thankfully this was fixed by <PersonLink github="sahrens" /> in <CommitLink repo="facebook/react-native" commit="xyz">this commit</CommitLink> many moons ago. But how?  And why was this a problem in the first place?
-          </Paragraph>
-
-          <Heading>The JavaScript Bridge</Heading>
-
-          <Paragraph>
-            React Native uses a batched, asynchronous bridge. If you need to access a value synchronously from JS or native code, the value has to live on that same side of the bridge. This becomes a bit of a problem in situations where ownership over a value can’t be entirely claimed by one side of the bridge. TextInput is one of these situations.
-          </Paragraph>
-
-          <Paragraph>
-            The value of a text field on iOS must live in UIKit, because that’s just how the framework is built, and React Native sits on top of it. But if we want TextInput to be a controlled component in React, then it must live in JavaScript too. Who do you go to at any given time to retrieve the true value? The answer is: it depends.
-          </Paragraph>
-
-          <Heading>Visualizing the problem</Heading>
-
-          <BrokenBehaviourVisualization />
-
-          <View style={styles.hr} />
-
-          <Heading>
-            The problem is that we don’t know on the native side if the update from JavaScript has taken into account the most recent input event
-          </Heading>
-
-          <Paragraph>
-            Both the native and JS sides of the bridge believe that they have posses the canonical value of the TextInput, and insist that the other update to that value even if the value has already changed on that side.
-          </Paragraph>
-
-          <Heading>
-            Towards a solution
-          </Heading>
-
-          <Paragraph>
-            A possible solution for this is for the native side to not update the text field value in response to a JavaScript command that is based on anything but the most recent input event.
-          </Paragraph>
-
-          <Paragraph>
-            This is the strategy that <PersonLink github="sahrens" /> went for. Specifically, the implementation keeps a counter of input events on the native text field and we increment it every time the text field value changes (in response to textFieldDidChange), and include the counter in our event object that we pass to JS in onChange. The JS side stores the counter in its state and passes it back to the native side along with any update command that results from handling the onChange callback. 
-          </Paragraph>
-
-          <Heading>Visualizing the solution</Heading>
-
-          <FixedBehaviourVisualization />
-
-          <View style={styles.hr} />
-
-          <Heading>Limitations of this approach</Heading>
-
-          <Paragraph>
-            <Text style={{fontWeight: 'bold'}}>There is still a frame of delay between the value being set on the text field and having the change event handled by JS.</Text> If we were to try to implement a maximum length of 5 characters for a text field using this approach, there would be a flash each time you press a new key at 5 characters because the value is actually set on the input, passed to JS, and JS tells native to remove the last character in the text field in the subsequent frame.
-          </Paragraph>
-
-          <Paragraph>
-            To get around this limitation, maxLength is implemented natively and must be specified as a prop. The same thing applies generally to preventing user input -- if you don’t want the user to enter anything, don’t just setState to empty string on change - set the editable prop to false. In these cases the logic can be run synchronously on the native thread, rather than waiting for the next frame (or worse if it’s blocked) for the JS thread to respond.
-          </Paragraph>
-
-          <MaxLengthExamples />
-
-          <Heading>
-            Remaining Work
-          </Heading>
-
-          <Paragraph>
-            Any live re-writing of text, for example changing all letters to uppercase, introduces a delay of at least one frame but potentially more depending on how long it takes for the JS thread to process the batch. This is part of a greater issue where we need to have some way to execute logic synchronously on the main thread sometimes - which is the solution that we used for maxLength above.
-          </Paragraph>
-
-          <LiveRewriteSlowSetState />
-
-          <Paragraph>
-            Another issue with live re-writing is the cursor position: let’s say that we want to add a dash between every character that is input and we enter "ABC", we would see this: |, A|, A-|B, A-C|-B
-          </Paragraph>
-
-          <LiveRewriteCursorPosition />
-
-          <Text style={styles.attribution}>
-            Made for <Text style={styles.exponent}>EXPONENT</Text>
-          </Text>
         </InteractiveScrollView>
 
         <NavBar onPress={this._scrollToTop.bind(this)} />
       </View>
     );
+  }
+
+  renderArticle() {
+    if (this.state.isReady) {
+      return (
+        <View>
+          <Paragraph>
+            React Native is powerful, so much so that it is can seem magical to
+            the untrained eye. Call me boring if you like, but I do not like it
+            when things are magical. I want to understand how and why they
+            work, to be able to predict what happens when I do x and to be able
+            to change that behaviour if I desire.
+          </Paragraph>
+
+          <Heading>Beyond the magic</Heading>
+
+          <Paragraph>
+            React Native for curious people is an ever-growing series of
+            articles about React Native that are the antithesis of tutorials;
+            we do not attempt to explain how to accomplish any specific task,
+            but rather aim to teach how React Native does what it does. The
+            slight-of-hand behind the magic, if you will. Of course, like most good
+            things we don't take ourselves too seriously so if we get excited about
+            something cool we learn and the only way to teach it is in the form of
+            a tutorial, you might see that. What you won't see is anything like "How to create
+            your own flashlight app in 10 minutes -- you'll never guess where the
+            light comes from!" Nothing against tutorials, we've all read and
+            perhaps even written our fair share, that's just not really what this is
+            about. It's about understanding.
+          </Paragraph>
+
+          <Heading>
+            I'm still reading but confused why this isn't just a website so
+            please tell me before I quit
+          </Heading>
+
+          <Paragraph>
+            A website is great for explaining how the web works. A React Native
+            app is a great way to explain how React Native works. We can
+            provide inline demos that actually run using React Native.
+          </Paragraph>
+
+          <View style={{width: Dimensions.get('window').width - 30, height: Dimensions.get('window').width, marginVertical: 10,}}>
+            <TinderExample
+              onStartInteraction={this._onStartInteraction.bind(this)}
+              onEndInteraction={this._onEndInteraction.bind(this)} />
+          </View>
+
+          <Paragraph>
+            In addition to inline examples, if you're anything like me you
+            probably just press "Read Later" on every article you come across
+            on the web and then catch up on them when you're in a plane,
+            train or automobile. So this is conveniently already on your
+            mobile device! And if you do happen to have an internet
+            connection, we can also link between other Exponent experiences
+            straight from the article.
+          </Paragraph>
+
+          <Paragraph>
+            Thank you so much for checking this out. Check back for more updates
+            in the near future!
+          </Paragraph>
+
+          <Text style={styles.attribution}>
+            Made for <Text style={styles.exponent}>EXPONENT</Text>
+          </Text>
+        </View>
+      );
+    } else {
+      return <ArticleLoadingIndicator />
+    }
+  }
+
+  _onStartInteraction() {
+    this._scrollView.setNativeProps({scrollEnabled: false});
+  }
+
+  _onEndInteraction() {
+    this._scrollView.setNativeProps({scrollEnabled: true});
   }
 
   _scrollToTop() {

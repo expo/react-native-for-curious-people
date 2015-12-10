@@ -18,14 +18,14 @@ let baseRoute = {};
 
 function activateStatusBar() {
   if (StatusBarIOS) {
-    StatusBarIOS.setHidden(false, 'none');
+    StatusBarIOS.setHidden(false, 'slide');
     StatusBarIOS.setStyle('light-content');
   }
 }
 
 function hideStatusBar() {
   if (StatusBarIOS) {
-    StatusBarIOS.setHidden(true, 'none');
+    StatusBarIOS.setHidden(true, 'slide');
   }
 }
 
@@ -57,7 +57,7 @@ const ExRouter = {
       },
 
       getSceneClass() {
-        if (id === 'intro') {
+        if (id === 'introduction') {
           return require('IntroductionArticle');
         } else if (id === 'text-input') {
           return require('TextInputArticle');

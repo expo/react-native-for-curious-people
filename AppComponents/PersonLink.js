@@ -11,19 +11,21 @@ import React, {
   Text,
 } from 'react-native';
 
+import Link from 'Link';
+
 export default class PersonLink extends React.Component {
 
   render() {
     return (
-      <Text style={styles.text} onPress={() => {}}>
+      <Link style={styles.text} url={`http://github.com/${this.props.github}`}>
         @{this.props.github}
-      </Text>
+      </Link>
     );
   }
 }
 
 let styles = StyleSheet.create({
   text: {
-    textDecorationLine: 'underline',
+    color: 'black',
   }
 });

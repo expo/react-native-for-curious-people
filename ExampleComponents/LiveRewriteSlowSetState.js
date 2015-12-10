@@ -33,7 +33,7 @@ export default class LiveRewriteSlowSetState extends React.Component {
           <InteractiveScrollView.TextInput
             value={this.state.value}
             onChangeText={this._updateText.bind(this)}
-            placeholder="Type some text here! Wait for it to be uppercased"
+            placeholder="Type some text! Wait for it to uppercase!"
             style={styles.textInput} />
         </View>
         <Text style={styles.subtitle}>

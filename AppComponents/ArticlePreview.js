@@ -73,7 +73,7 @@ let styles = StyleSheet.create({
   articlePreviewBody: {
   },
   articlePreviewBodyText: {
-    fontSize: 16,
-    lineHeight: 26,
+    fontSize: 15,
+    lineHeight: 24,
   },
 });

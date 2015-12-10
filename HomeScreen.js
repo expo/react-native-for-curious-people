@@ -22,16 +22,11 @@ import React, {
 import ArticlePreview from 'ArticlePreview';
 import Colors from 'Colors';
 import ImageUris from 'ImageUris';
+import Link from 'Link';
 import NavBar from 'NavBar';
-import TextInputArticle from 'TextInputArticle';
 
 import { isIOS, isAndroid } from 'Platforms';
 import { serif } from 'Fonts';
-
-// <View style={styles.heroImageContainer}>
-//   <Image source={{uri: ImageUris.logoLarge}} style={styles.heroImage} />
-// </View>
-
 
 class Hero extends React.Component {
   render() {
@@ -116,25 +111,10 @@ export default class HomeScreen extends React.Component {
   }
 }
 
-class Link extends React.Component {
-  render() {
-    return (
-      <Text onPress={() => alert('hi') } style={[styles.link, this.props.style]}>
-        {this.props.children}
-      </Text>
-    )
-  }
-
-}
-
 let styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  link: {
-    textDecorationLine: 'underline',
-    color: Colors.brand,
   },
   body: {
     backgroundColor: Colors.greyBackground,
@@ -163,7 +143,7 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 10,
-    paddingTop: 18,
+    paddingTop: 22,
     paddingBottom: 2,
   },
   heroImageContainer: {

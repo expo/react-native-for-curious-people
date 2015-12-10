@@ -8,6 +8,7 @@
 import React, {
   PixelRatio,
   StyleSheet,
+  Dimensions,
   Text,
   TouchableOpacity,
   View,
@@ -15,6 +16,8 @@ import React, {
 
 import CodeBlock from 'CodeBlock';
 import ExTextInput from 'ExTextInput';
+
+const isSmallScreen = Dimensions.get('window').width <= 320;
 
 const exampleCode = `
 <TextInput
@@ -135,7 +138,7 @@ export default class FixedBehaviourVisualization extends React.Component {
         </View>
         <View style={styles.body}>
 
-          <View style={styles.row} key="user-input-row">
+          <View style={[styles.row]} key="user-input-row">
             <View style={styles.labelCol}>
               <Text style={styles.labelText}>
                 User Input
@@ -148,7 +151,7 @@ export default class FixedBehaviourVisualization extends React.Component {
             </View>
           </View>
 
-          <View style={styles.row} key="js-thread-row">
+          <View style={[styles.row, {height: isSmallScreen ? 130 : 85}]} key="js-thread-row">
             <View style={styles.labelCol}>
               <Text style={styles.labelText}>
                 JS Thread
@@ -161,7 +164,7 @@ export default class FixedBehaviourVisualization extends React.Component {
             </View>
           </View>
 
-          <View style={styles.row} key="main-thread-row">
+          <View style={[styles.row, {height: isSmallScreen ? 130 : 85}]} key="main-thread-row">
             <View style={styles.labelCol}>
               <Text style={styles.labelText}>
                 UI thread

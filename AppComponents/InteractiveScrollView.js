@@ -217,6 +217,10 @@ var InteractiveScrollView = React.createClass({
     }
   },
 
+  setNativeProps(props) {
+    this.scrollView.setNativeProps(props);
+  },
+
   render() {
     return (
       <ScrollView {...this.props}

@@ -10,19 +10,23 @@ import React, {
   Text,
 } from 'react-native';
 
+import Link from 'Link';
+
 export default class CommitLink extends React.Component {
 
   render() {
+    let { repo, commit } = this.props;
+
     return (
-      <Text style={styles.text} onPress={() => {}}>
+      <Link style={styles.text} url={`https://github.com/${repo}/commit/${commit}`}>
         {this.props.children}
-      </Text>
+      </Link>
     );
   }
 }
 
 let styles = StyleSheet.create({
   text: {
-    textDecorationLine: 'underline',
+    color: 'black',
   }
 });

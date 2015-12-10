@@ -11,6 +11,7 @@ import React, {
   AppRegistry,
   Easing,
   Image,
+  InteractionManager,
   PixelRatio,
   Platform,
   ScrollView,
@@ -21,6 +22,7 @@ import React, {
   View,
 } from 'react-native';
 
+import ArticleLoadingIndicator from 'ArticleLoadingIndicator';
 import BrokenBehaviourVisualization from 'BrokenBehaviourVisualization';
 import FixedBehaviourVisualization from 'FixedBehaviourVisualization';
 import CharacterDroppingSimulator from 'CharacterDroppingSimulator';
@@ -41,13 +43,17 @@ import { serif } from 'Fonts';
 export default class TextInputArticle extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state= {};
+    this.state = {};
   }
 
   componentDidMount() {
     if (StatusBarIOS) {
       StatusBarIOS.setHidden(true, 'none');
     }
+
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({isReady: true});
+    });
   }
 
   render() {
@@ -72,6 +78,19 @@ export default class TextInputArticle extends React.Component {
 
           <View style={styles.hr} />
 
+          {this.renderArticle()}
+
+        </InteractiveScrollView>
+
+        <NavBar onPress={this._scrollToTop.bind(this)} />
+      </View>
+    );
+  }
+
+  renderArticle() {
+    if (this.state.isReady) {
+      return (
+        <View>
           <Paragraph>
             If you used React Native when it was first released, you might
             remember how janky the TextInput component was -- I mean it
@@ -84,11 +103,11 @@ export default class TextInputArticle extends React.Component {
 
           <CharacterDroppingSimulator
             exampleText="This is dropping characters"
-            placeholder="Tap in here and type away as quickly as you can"
+            placeholder="Tap in here and type as quickly as you can"
             subtitle="An exaggerated simulation of the behavior described above" />
 
           <Paragraph>
-            Thankfully this was fixed by <PersonLink github="sahrens" /> in <CommitLink repo="facebook/react-native" commit="xyz">this commit</CommitLink> many moons ago. But how?  And why was this a problem in the first place?
+            Thankfully this was fixed by <PersonLink github="sahrens" /> in <CommitLink repo="facebook/react-native" commit="961c1e">this commit</CommitLink> many moons ago. But how?  And why was this a problem in the first place?
           </Paragraph>
 
           <Heading>The JavaScript Bridge</Heading>
@@ -164,11 +183,11 @@ export default class TextInputArticle extends React.Component {
           <Text style={styles.attribution}>
             Made for <Text style={styles.exponent}>EXPONENT</Text>
           </Text>
-        </InteractiveScrollView>
-
-        <NavBar onPress={this._scrollToTop.bind(this)} />
-      </View>
-    );
+        </View>
+      );
+    } else {
+      return <ArticleLoadingIndicator />;
+    }
   }
 
   _scrollToTop() {
