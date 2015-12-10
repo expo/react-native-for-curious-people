@@ -20,6 +20,7 @@ import React, {
   View,
 } from 'react-native';
 
+import ArticlePreview from 'ArticlePreview';
 import Colors from 'Colors';
 import ImageUris from 'ImageUris';
 import NavBar from 'NavBar';
@@ -53,7 +54,8 @@ class Main extends React.Component {
 
   componentDidMount() {
     if (StatusBarIOS) {
-      StatusBarIOS.setHidden(true, 'none');
+      StatusBarIOS.setHidden(false, 'none');
+      StatusBarIOS.setStyle('light-content');
     }
   }
 
@@ -82,46 +84,18 @@ class Main extends React.Component {
   _renderArticleList() {
     return (
       <View style={styles.articleListContainer}>
+        <ArticlePreview category="Introduction" title="Read this first!">
+            What is this? Why does this exist? Who am I?
+            How did I get here? How do I work this?
+            What is that large automobile?
+        </ArticlePreview>
 
-        <View style={styles.articlePreviewContainer}>
-          <View stlye={styles.articlePreviewHeader}>
-            <Text style={styles.articlePreviewCategoryText}>
-              INTRODUCTION
-            </Text>
-            <Text style={styles.articlePreviewTitleText}>
-              Read this first!
-            </Text>
-          </View>
-
-          <View style={styles.articlePreviewBody}>
-            <Text style={styles.articlePreviewBodyText}>
-              What is this? Why does this exist? Who am I?
-              How did I get here? How do I work this?
-              What is that large automobile?
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.articlePreviewContainer}>
-          <View stlye={styles.articlePreviewHeader}>
-            <Text style={styles.articlePreviewCategoryText}>
-              BRIDGE
-            </Text>
-            <Text style={styles.articlePreviewTitleText}>
-              How TextInput works
-            </Text>
-          </View>
-
-          <View style={styles.articlePreviewBody}>
-            <Text style={styles.articlePreviewBodyText}>
-              You know that it works, you have used it. But
-              how does it do it’s thing behind the scenes?
-              In this article I attempt to explain that, with
-              the help of some examples.
-            </Text>
-          </View>
-        </View>
-
+        <ArticlePreview category="Bridge" title="How TextInput works">
+            You know that it works, you have used it. But
+            how does it do it’s thing behind the scenes?
+            In this article I attempt to explain that, with
+            the help of some examples.
+        </ArticlePreview>
       </View>
     );
   }
@@ -178,32 +152,6 @@ let styles = StyleSheet.create({
   articleListContainer: {
     backgroundColor: '#fff',
   },
-  articlePreviewContainer: {
-    paddingHorizontal: 15,
-    paddingTop: 20,
-    paddingBottom: 25,
-    borderColor: Colors.greyBorder,
-    borderTopWidth: 1,
-  },
-  lastArticlePreviewContainer: {
-    borderBottomWidth: 1,
-  },
-  articlePreviewCategoryText: {
-    color: Colors.fadedText,
-    fontSize: 15,
-  },
-  articlePreviewTitleText: {
-    fontSize: 23,
-    fontWeight: '700',
-    marginTop: 3,
-    marginBottom: 3,
-  },
-  articlePreviewBody: {
-  },
-  articlePreviewBodyText: {
-    fontSize: 16,
-    lineHeight: 26,
-  },
   header: {
     marginTop: 40,
     marginBottom: 5,
@@ -214,8 +162,8 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: 10,
-    paddingTop: 23,
-    paddingBottom: 15,
+    paddingTop: 33,
+    paddingBottom: 10,
   },
   heroImageContainer: {
     padding: 10,
