@@ -1,129 +1,41 @@
 /**
  * Copyright 2015-present 650 Industries. All rights reserved.
  *
- * @providesModule TextInputArticle
+ * @providesModule main
  */
 'use strict';
 
 import React, {
-  Animated,
   AppRegistry,
-  Easing,
-  Image,
   PixelRatio,
-  Platform,
-  ScrollView,
-  StatusBarIOS,
   StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 
-import ArticlePreview from 'ArticlePreview';
 import Colors from 'Colors';
-import ImageUris from 'ImageUris';
-import NavBar from 'NavBar';
-import TextInputArticle from 'TextInputArticle';
+import ExNavigator from '@exponent/react-native-navigator';
+import ExRouter from 'ExRouter';
 
 import { isIOS, isAndroid } from 'Platforms';
 import { serif } from 'Fonts';
 
-class Hero extends React.Component {
-  render() {
-    return (
-      <View style={styles.heroContainer}>
-        <View style={styles.heroImageContainer}>
-          <Image source={{uri: ImageUris.logoLarge}} style={styles.heroImage} />
-        </View>
-
-        <View style={styles.heroTextContainer}>
-          <Text style={styles.heroTitleText}>React Native</Text>
-          <Text style={styles.heroSubtitleText}>for curious people</Text>
-        </View>
-      </View>
-    );
-  }
-}
-
 class Main extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state= {};
-  }
-
-  componentDidMount() {
-    if (StatusBarIOS) {
-      StatusBarIOS.setHidden(false, 'none');
-      StatusBarIOS.setStyle('light-content');
-    }
+    this.state = {};
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Hero />
+    let initialRoute = ExRouter.getHomeRoute();
 
-        <ScrollView style={styles.body}>
-          {this._renderFunnyThing()}
-          {this._renderArticleList()}
-          {this._renderFooter()}
-        </ScrollView>
-      </View>
+    return (
+      <ExNavigator
+        ref={component => this._topNavigatorRef = component}
+        initialRoute={initialRoute}
+        showNavigationBar={false}
+      />
     );
   }
-
-  _renderFunnyThing() {
-    return (
-      <View style={{position: 'absolute', top: -50, left: 0, right: 0, alignItems: 'center', justifyContent: 'center',}}>
-        <Text style={{color: Colors.fadedText}}>Nothing to see here! Look down below</Text>
-      </View>
-    );
-  }
-
-  _renderArticleList() {
-    return (
-      <View style={styles.articleListContainer}>
-        <ArticlePreview category="Introduction" title="Read this first!">
-            What is this? Why does this exist? Who am I?
-            How did I get here? How do I work this?
-            What is that large automobile?
-        </ArticlePreview>
-
-        <ArticlePreview category="Bridge" title="How TextInput works">
-            You know that it works, you have used it. But
-            how does it do it’s thing behind the scenes?
-            In this article I attempt to explain that, with
-            the help of some examples.
-        </ArticlePreview>
-      </View>
-    );
-  }
-
-  _renderFooter() {
-    return (
-      <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>
-          That’s all for now! This is a brand new project
-          and more articles will be coming soon. If
-          you would like to be notified by e-mail of
-          updates, sign up for the <Link url="http://reactnative.cc">React Native Newsletter</Link>
-        </Text>
-      </View>
-    )
-  }
-}
-
-class Link extends React.Component {
-
-  render() {
-    return (
-      <Text onPress={() => alert('hi') } style={[styles.link, this.props.style]}>
-        {this.props.children}
-      </Text>
-    )
-  }
-
 }
 
 let styles = StyleSheet.create({

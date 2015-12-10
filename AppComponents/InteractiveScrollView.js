@@ -92,8 +92,8 @@ var InteractiveScrollView = React.createClass({
   },
 
   componentWillUnmount() {
-    DeviceEventEmitter.removeListener(this._keyboardShow);
-    DeviceEventEmitter.removeListener(this._keyboardHide);
+    this._keyboardHide.remove();
+    this._keyboardShow.remove();
   },
 
   availableHeight():number {

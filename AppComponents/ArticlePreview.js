@@ -8,32 +8,43 @@
 import React, {
   StyleSheet,
   Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 
 import Colors from 'Colors';
+import ExRouter from 'ExRouter';
 
 export default class ArticlePreview extends React.Component {
 
   render() {
     return (
-      <View style={styles.articlePreviewContainer}>
-        <View stlye={styles.articlePreviewHeader}>
-          <Text style={styles.articlePreviewCategoryText}>
-            {this.props.category}
-          </Text>
-          <Text style={styles.articlePreviewTitleText}>
-            {this.props.title}
-          </Text>
-        </View>
+      <TouchableHighlight
+        onPress={this._navigateToArticle.bind(this)}
+        style={styles.articlePreviewContainer}
+        underlayColor='#FFF3F3'>
+        <View>
+          <View stlye={styles.articlePreviewHeader}>
+            <Text style={styles.articlePreviewCategoryText}>
+              {this.props.category}
+            </Text>
+            <Text style={styles.articlePreviewTitleText}>
+              {this.props.title}
+            </Text>
+          </View>
 
-        <View style={styles.articlePreviewBody}>
-          <Text style={styles.articlePreviewBodyText}>
-            {this.props.children}
-          </Text>
+          <View style={styles.articlePreviewBody}>
+            <Text style={styles.articlePreviewBodyText}>
+              {this.props.children}
+            </Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     );
+  }
+
+  _navigateToArticle() {
+    this.props.navigator.push(ExRouter.getArticleRoute(this.props.id));
   }
 
 }

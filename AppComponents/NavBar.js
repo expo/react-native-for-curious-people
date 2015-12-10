@@ -13,6 +13,7 @@ import React, {
   View,
 } from 'react-native';
 
+import Colors from 'Colors';
 import { isIOS, isAndroid } from 'Platforms';
 
 export default class NavBar extends React.Component {
@@ -42,11 +43,11 @@ let styles = StyleSheet.create({
     paddingTop: isIOS ? 0 : 30,
     paddingBottom: isIOS ? 0 : 7,
     paddingHorizontal: 15,
-    backgroundColor: '#123F74',
+    backgroundColor: Colors.brand,
     justifyContent: 'center',
   },
   navbarText: {
-    color: '#90B2DB',
+    color: '#fff',
     opacity: 0.8,
   },
 });
