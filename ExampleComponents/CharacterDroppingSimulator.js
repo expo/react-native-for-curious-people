@@ -9,11 +9,12 @@ import React, {
   PixelRatio,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 
 import InteractiveScrollView from 'InteractiveScrollView';
+
+import { isIOS } from 'Platforms';
 
 export default class CharacterDroppingSimulator extends React.Component {
 
@@ -38,6 +39,7 @@ export default class CharacterDroppingSimulator extends React.Component {
             ref={(view) => { this._textInput = view; }}
             style={styles.textInput} />
         </View>
+
         <Text style={styles.subtitle}>
           {this.props.subtitle}
         </Text>
@@ -49,9 +51,10 @@ export default class CharacterDroppingSimulator extends React.Component {
     let { value, lastChange } = this.state;
     let currentChange = new Date();
     let n = parseInt(Math.random() * 10);
-    let randomize = n % 2 === 0;
+    let randomize = n % 2 === 0 || n % 3 === 0;
+    const delay = isIOS ? 200 : 600;
 
-    if (randomize && text.length >= 2 && currentChange - lastChange <= 200) {
+    if (randomize && text.length >= 2 && true || (currentChange - lastChange) <= delay) {
       let newValue = text.substr(0, text.length - 2) + text[text.length - 1];
       this.setState({value: newValue, lastChange: currentChange});
     } else {

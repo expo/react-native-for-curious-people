@@ -9,7 +9,6 @@ import React, {
   PixelRatio,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 

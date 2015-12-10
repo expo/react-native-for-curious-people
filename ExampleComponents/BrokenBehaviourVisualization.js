@@ -9,19 +9,17 @@ import React, {
   PixelRatio,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import CodeBlock from 'CodeBlock';
+import ExTextInput from 'ExTextInput';
 
 const exampleCode = `
 <TextInput
   value={this.state.text}
-  onChangeText={(text) => {
-    this.setState({text})
-  }}
+  onChangeText={(text) => this.setState({text}) }
   controlled={true} />
 `
 
@@ -64,7 +62,7 @@ export default class BrokenBehaviourVisualization extends React.Component {
         {this._renderTable()}
 
         <View style={styles.shadow}>
-          <TextInput
+          <ExTextInput
             value={this.state.value}
             editable={false}
             ref={(view) => { this._textInput = view; }}
@@ -248,7 +246,7 @@ let styles = StyleSheet.create({
     right: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 3,
+    borderRadius: 1,
   },
 
   startButton: {

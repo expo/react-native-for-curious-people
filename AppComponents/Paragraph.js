@@ -11,6 +11,8 @@ import React, {
   View,
 } from 'react-native';
 
+import { serif } from 'Fonts';
+
 export default class Paragraph extends React.Component {
 
   render() {
@@ -29,9 +31,9 @@ let styles = StyleSheet.create({
     marginBottom: 15,
   },
   paragraphText: {
-    fontFamily: 'Georgia',
-    fontSize: 18,
-    lineHeight: 26,
+    fontFamily: serif,
+    fontSize: 17,
+    lineHeight: 25,
     color: '#363636',
   },
 });

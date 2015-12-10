@@ -9,7 +9,6 @@ import React, {
   PixelRatio,
   StyleSheet,
   Text,
-  TextInput,
   View,
 } from 'react-native';
 
@@ -33,9 +32,8 @@ export default class LiveRewriteSlowSetState extends React.Component {
         <View style={styles.shadow}>
           <InteractiveScrollView.TextInput
             value={this.state.value}
-            onChangeText={this._updateText}
+            onChangeText={this._updateText.bind(this)}
             placeholder="Type some text here! Wait for it to be uppercased"
-            ref={(view) => { this._textInput = view; }}
             style={styles.textInput} />
         </View>
         <Text style={styles.subtitle}>
@@ -46,8 +44,6 @@ export default class LiveRewriteSlowSetState extends React.Component {
   }
 
   _updateText(text) {
-    let { value } = this.state;
-
     doSomeExpensiveOperation();
     this.setState({value: text.toUpperCase()});
   }

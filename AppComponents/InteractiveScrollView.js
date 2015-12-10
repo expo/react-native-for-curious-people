@@ -12,8 +12,11 @@ import React, {
   TextInput,
   NativeModules,
   InteractionManager,
+  Platform,
   View,
 } from 'react-native';
+
+import ExTextInput from 'ExTextInput';
 
 var { UIManager, ScrollViewManager, } = NativeModules;
 
@@ -98,7 +101,7 @@ var InteractiveScrollView = React.createClass({
   },
 
   scrollTo(y) {
-    if (!this.scrollView) {
+    if (!this.scrollView || Platform.OS === 'android') {
       return;
     }
 
@@ -365,12 +368,18 @@ class InteractiveTextInput extends BaseInteractiveComponent {
   }
 
   render() {
-    return (
-      <TextInput {...this.props}
-        ref="node"
-        onFocus={this._onFocus.bind(this)}
-        onBlur={this._onBlur.bind(this)} />
-    )
+    if (Platform.OS === 'android') {
+      return (
+        <ExTextInput {...this.props} />
+      );
+    } else {
+      return (
+        <ExTextInput {...this.props}
+          ref="node"
+          onFocus={this._onFocus.bind(this)}
+          onBlur={this._onBlur.bind(this)} />
+      );
+    }
   }
 }
 

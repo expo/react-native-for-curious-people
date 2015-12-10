@@ -9,12 +9,12 @@ import React, {
   PixelRatio,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 
 import CodeBlock from 'CodeBlock';
+import ExTextInput from 'ExTextInput';
 
 const exampleCode = `
 <TextInput
@@ -64,7 +64,7 @@ export default class FixedBehaviourVisualization extends React.Component {
         {this._renderTable()}
 
         <View style={styles.shadow}>
-          <TextInput
+          <ExTextInput
             value={this.state.value}
             editable={false}
             ref={(view) => { this._textInput = view; }}

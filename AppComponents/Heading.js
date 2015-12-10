@@ -11,6 +11,9 @@ import React, {
   View,
 } from 'react-native';
 
+import { sans } from 'Fonts';
+import { isAndroid } from 'Platforms';
+
 export default class Heading extends React.Component {
 
   render() {
@@ -24,8 +27,9 @@ export default class Heading extends React.Component {
 
 let styles = StyleSheet.create({
   headingText: {
+    fontFamily: sans,
     fontSize: 25,
-    lineHeight: 29,
+    lineHeight: 32,
     color: '#989292',
     marginBottom: 10,
     marginTop: 10,
