@@ -12,6 +12,6 @@
   "dependencies": {
     "@exponent/react-native-navigator": "^0.3.5",
     "clamp": "^1.0.1",
-    "react-native": "exponentjs/react-native#2015-11-13"
+    "react-native": "exponentjs/react-native#2015-12-18"
   }
 }

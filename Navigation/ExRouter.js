@@ -13,6 +13,9 @@ import React, {
 } from 'react-native';
 
 import ExNavigator from '@exponent/react-native-navigator';
+import HomeScreen from 'HomeScreen';
+import IntroductionArticle from 'IntroductionArticle';
+import TextInputArticle from 'TextInputArticle';
 
 let baseRoute = {};
 
@@ -43,8 +46,8 @@ const ExRouter = {
       },
 
       getSceneClass() {
-        return require('HomeScreen');
-      },
+        return HomeScreen;
+      }
     };
   },
 
@@ -58,9 +61,9 @@ const ExRouter = {
 
       getSceneClass() {
         if (id === 'introduction') {
-          return require('IntroductionArticle');
+          return IntroductionArticle;
         } else if (id === 'text-input') {
-          return require('TextInputArticle');
+          return TextInputArticle;
         }
       },
     };

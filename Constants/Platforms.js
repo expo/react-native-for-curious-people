@@ -7,7 +7,7 @@
 
 import { Platform } from 'react-native';
 
-export default {
+module.exports = {
   isIOS: Platform.OS === 'ios',
   isAndroid: Platform.OS === 'android',
 }
