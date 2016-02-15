@@ -7,11 +7,13 @@
   "exp": {
     "name": "React Native for curious people",
     "primaryColor": "#E7E7E7",
-    "iconUrl": "https://s3.amazonaws.com/rnfcp/icon.png"
+    "iconUrl": "https://s3.amazonaws.com/rnfcp/icon.png",
+    "abiVersion": "5.0.0"
   },
   "dependencies": {
     "@exponent/react-native-navigator": "^0.3.5",
     "clamp": "^1.0.1",
-    "react-native": "exponentjs/react-native#2015-12-18"
+    "react": "^0.14.7",
+    "react-native": "exponentjs/react-native#2016-02-09"
   }
 }

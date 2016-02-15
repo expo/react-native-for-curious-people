@@ -517,7 +517,7 @@ let other = {
 
 let withBg = {
   color: '#a67f59',
-  backgroundColor: 'hsla(0%,0%,100%,0.2)',
+  backgroundColor: 'hsla(0,0%,100%,0.2)',
 };
 
 let standout = {
