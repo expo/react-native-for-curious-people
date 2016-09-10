@@ -4,11 +4,11 @@
  * @providesModule InteractiveScrollView
  */
 
-import ReactInstanceMap from 'ReactInstanceMap';
-import React, {
-  DeviceEventEmitter,
+import ReactInstanceMap from 'react/lib/ReactInstanceMap';
+import React, { PropTypes } from 'react';
+import ReactNative, {
+  Keyboard,
   ScrollView,
-  PropTypes,
   TextInput,
   NativeModules,
   InteractionManager,
@@ -77,12 +77,12 @@ var InteractiveScrollView = React.createClass({
   },
 
   componentWillMount() {
-    this._keyboardShow = DeviceEventEmitter.addListener('keyboardWillShow', (frames) => {
+    this._keyboardShow = Keyboard.addListener('keyboardWillShow', (frames) => {
       this.keyboardHeight = frames.endCoordinates.height;
       this.updateFocusedNode();
     });
 
-    this._keyboardHide = DeviceEventEmitter.addListener('keyboardDidHide', (frames) => {
+    this._keyboardHide = Keyboard.addListener('keyboardDidHide', (frames) => {
       this.keyboardHeight = 0;
 
       InteractionManager.runAfterInteractions(() => {
@@ -92,8 +92,8 @@ var InteractiveScrollView = React.createClass({
   },
 
   componentWillUnmount() {
-    this._keyboardHide.remove();
-    this._keyboardShow.remove();
+    Keyboard.removeSubscription(this._keyboardShow);
+    Keyboard.removeSubscription(this._keyboardHide);
   },
 
   availableHeight():number {
@@ -105,7 +105,7 @@ var InteractiveScrollView = React.createClass({
       return;
     }
 
-    let scrollViewHandle = React.findNodeHandle(this.scrollView);
+    let scrollViewHandle = ReactNative.findNodeHandle(this.scrollView);
     ScrollViewManager.getContentSize(scrollViewHandle, ({height}) => {
       let lowestTop = height - (this.availableHeight());
       let scrollY;
@@ -159,8 +159,8 @@ var InteractiveScrollView = React.createClass({
     // TODO: topFocusOffset is only implemented for FOCUS_AUTO!
     var topFocusOffset = node.props.topFocusOffset ? node.props.topFocusOffset : 0;
 
-    var targetHandle = React.findNodeHandle(node);
-    var scrollViewHandle = React.findNodeHandle(this.scrollView);
+    var targetHandle = ReactNative.findNodeHandle(node);
+    var scrollViewHandle = ReactNative.findNodeHandle(this.scrollView);
     this.focusedNode = node;
     this.focusType = focus;
 

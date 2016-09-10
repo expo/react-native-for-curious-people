@@ -3,7 +3,6 @@
  *
  * @providesModule Platforms
  */
-'use strict';
 
 import { Platform } from 'react-native';
 

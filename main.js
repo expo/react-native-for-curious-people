@@ -3,9 +3,9 @@
  *
  * @providesModule main
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   AppRegistry,
   BackAndroid,
   PixelRatio,

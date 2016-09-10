@@ -3,7 +3,6 @@
  *
  * @providesModule doSomeExpensiveOperation
  */
-'use strict';
 
 export default function doSomeExpensiveOperation() {
   var takeForever = "";

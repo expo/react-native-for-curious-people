@@ -3,9 +3,9 @@
  *
  * @providesModule ArticlePreview
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   StyleSheet,
   Text,
   TouchableHighlight,

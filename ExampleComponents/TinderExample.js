@@ -3,14 +3,13 @@
  *
  * @providesModule TinderExample
  */
-'use strict';
 
-import React, {
+import React, { Component } from 'react';
+import {
   StyleSheet,
   Text,
   View,
   Animated,
-  Component,
   PanResponder,
 } from 'react-native';
 

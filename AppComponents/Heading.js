@@ -3,9 +3,9 @@
  *
  * @providesModule Heading
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   StyleSheet,
   Text,
   View,

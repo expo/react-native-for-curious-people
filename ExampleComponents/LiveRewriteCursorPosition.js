@@ -3,9 +3,9 @@
  *
  * @providesModule LiveRewriteCursorPosition
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   PixelRatio,
   Platform,
   StyleSheet,

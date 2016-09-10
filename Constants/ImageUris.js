@@ -3,7 +3,6 @@
  *
  * @providesModule ImageUris
  */
-'use strict';
 
 export default {
   icon: 'https://s3.amazonaws.com/rnfcp/icon.png',

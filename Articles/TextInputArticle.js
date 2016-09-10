@@ -4,9 +4,9 @@
  *
  * @providesModule TextInputArticle
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   Animated,
   AppRegistry,
   Easing,
@@ -15,7 +15,7 @@ import React, {
   PixelRatio,
   Platform,
   ScrollView,
-  StatusBarIOS,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -47,10 +47,6 @@ export default class TextInputArticle extends React.Component {
   }
 
   componentDidMount() {
-    if (StatusBarIOS) {
-      StatusBarIOS.setHidden(true, 'none');
-    }
-
     InteractionManager.runAfterInteractions(() => {
       this.setState({isReady: true});
     });
@@ -83,6 +79,7 @@ export default class TextInputArticle extends React.Component {
         </InteractiveScrollView>
 
         <NavBar onPress={this._scrollToTop.bind(this)} />
+        <StatusBar hidden={true} />
       </View>
     );
   }

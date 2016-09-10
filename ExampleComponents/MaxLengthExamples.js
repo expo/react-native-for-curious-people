@@ -3,9 +3,9 @@
  *
  * @providesModule MaxLengthExamples
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   PixelRatio,
   StyleSheet,
   Text,

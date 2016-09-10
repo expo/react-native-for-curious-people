@@ -3,9 +3,9 @@
  *
  * @providesModule Link
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   Text,
   StyleSheet,
   NativeModules,

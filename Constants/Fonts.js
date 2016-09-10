@@ -3,7 +3,6 @@
  *
  * @providesModule Fonts
  */
-'use strict';
 
 import { isIOS, isAndroid } from 'Platforms';
 

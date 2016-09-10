@@ -3,16 +3,16 @@
  *
  * @providesModule HomeScreen
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   Animated,
   Easing,
   Image,
   PixelRatio,
   Platform,
   ScrollView,
-  StatusBarIOS,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -58,6 +58,7 @@ export default class HomeScreen extends React.Component {
           {this._renderArticleList()}
           {this._renderFooter()}
         </ScrollView>
+        <StatusBar visible="true" barStyle="light-content" />
       </View>
     );
   }

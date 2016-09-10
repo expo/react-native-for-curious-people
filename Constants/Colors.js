@@ -3,7 +3,6 @@
  *
  * @providesModule Colors
  */
-'use strict';
 
 export default {
   brand: '#DB6060',

@@ -4,9 +4,9 @@
  *
  * @providesModule ExTextInput
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   Platform,
   StyleSheet,
   TextInput,

@@ -3,9 +3,9 @@
  *
  * @providesModule FixedBehaviourVisualization
  */
-'use strict';
 
-import React, {
+import React from 'react';
+import {
   PixelRatio,
   StyleSheet,
   Dimensions,

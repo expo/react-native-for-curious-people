@@ -3,12 +3,10 @@
  *
  * @providesModule ArticleLoadingIndicator
  */
-'use strict';
 
-import React, {
-  ActivityIndicatorIOS,
-  Platform,
-  ProgressBarAndroid,
+import React from 'react';
+import {
+  ActivityIndicator,
   StyleSheet,
   View,
 } from 'react-native';
@@ -18,19 +16,11 @@ import Colors from 'Colors';
 export default class ArticleLoadingIndicator extends React.Component {
 
   render() {
-    if (Platform.OS === 'android') {
-      return (
-        <View style={styles.loadingContainer}>
-          <ProgressBarAndroid styleAttr="Large" color={Colors.brand} />
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicatorIOS size="large" />
-        </View>
-      );
-    }
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color={Colors.brand} />
+      </View>
+    );
   }
 }
 
