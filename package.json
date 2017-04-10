@@ -3,22 +3,14 @@
   "version": "0.0.0",
   "description": "Articles about React Native!",
   "main": "main.js",
-  "author": "brent@exponentjs.com",
-  "exp": {
-    "name": "React Native for curious people",
-    "primaryColor": "#E7E7E7",
-    "iconUrl": "https://s3.amazonaws.com/rnfcp/icon.png",
-    "abiVersion": "5.0.0"
-  },
+  "author": "brent@expo.io",
   "dependencies": {
-    "@exponent/react-native-navigator": "^0.4.8",
-    "@exponent/vector-icons": "^1.0.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-react-native-stage-0": "^1.0.1",
+    "@expo/react-native-navigator": "^0.4.8",
+    "@expo/vector-icons": "^4.0.0",
     "clamp": "^1.0.1",
-    "exponent": "^9.0.2",
-    "react": "15.2.1",
+    "expo": "^15.0.2",
+    "react": "~15.4.0",
     "react-clone-referenced-element": "^1.0.1",
-    "react-native": "github:exponentjs/react-native#sdk-9.0.0"
+    "react-native": "https://github.com/exponent/react-native/archive/sdk-15.0.0.tar.gz"
   }
 }

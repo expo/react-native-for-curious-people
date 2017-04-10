@@ -130,7 +130,7 @@ export default class TextInputArticle extends React.Component {
             on the web and then catch up on them when you're in a plane,
             train or automobile. So this is conveniently already on your
             mobile device! And if you do happen to have an internet
-            connection, we can also link between other Exponent experiences
+            connection, we can also link between other Expo experiences
             straight from the article.
           </Paragraph>
 
@@ -140,7 +140,7 @@ export default class TextInputArticle extends React.Component {
           </Paragraph>
 
           <Text style={styles.attribution}>
-            Made for <Text style={styles.exponent}>EXPONENT</Text>
+            Made for <Text style={styles.expo}>EXPO</Text>
           </Text>
         </View>
       );
@@ -208,7 +208,7 @@ let styles = StyleSheet.create({
     marginBottom: 18,
     marginHorizontal: 15,
   },
-  exponent: {
+  expo: {
     color: '#777',
     fontWeight: '200',
     letterSpacing: 3,

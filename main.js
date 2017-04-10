@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import Colors from 'Colors';
-import ExNavigator from '@exponent/react-native-navigator';
+import ExNavigator from '@expo/react-native-navigator';
 import ExRouter from 'ExRouter';
 
 import { isIOS, isAndroid } from 'Platforms';

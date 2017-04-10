@@ -2,23 +2,21 @@
   "name": "React Native for Curious People",
   "description": "Interactive articles about React Native, written in React Native.",
   "slug": "react-native-for-curious-people",
-  "sdkVersion": "9.0.0",
-  "version": "1.0.0",
+  "privacy": "public",
+  "sdkVersion": "15.0.0",
+  "version": "1.1.0",
   "orientation": "portrait",
-  "primaryColor": "#cccccc",
   "primaryColor": "#E7E7E7",
-  "iconUrl": "https://s3.amazonaws.com/rnfcp/icon.png",
+  "icon": "https://s3.amazonaws.com/rnfcp/icon.png",
   "notification": {
-    "iconUrl": "https://s3.amazonaws.com/exp-us-standard/placeholder-push-icon-blue-circle.png",
+    "icon": "https://s3.amazonaws.com/exp-us-standard/placeholder-push-icon-blue-circle.png",
     "color": "#000000"
   },
   "loading": {
-    "iconUrl": "https://s3.amazonaws.com/rnfcp/icon.png",
+    "icon": "https://s3.amazonaws.com/rnfcp/icon.png",
     "hideExponentText": false
   },
   "packagerOpts": {
-    "assetExts": [
-      "ttf"
-    ]
+    "assetExts": [ "ttf" ]
   }
 }

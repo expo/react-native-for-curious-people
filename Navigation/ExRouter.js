@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 
-import ExNavigator from '@exponent/react-native-navigator';
+import ExNavigator from '@expo/react-native-navigator';
 import HomeScreen from 'HomeScreen';
 import IntroductionArticle from 'IntroductionArticle';
 import TextInputArticle from 'TextInputArticle';

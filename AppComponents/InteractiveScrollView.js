@@ -4,7 +4,6 @@
  * @providesModule InteractiveScrollView
  */
 
-import ReactInstanceMap from 'react/lib/ReactInstanceMap';
 import React, { PropTypes } from 'react';
 import ReactNative, {
   Keyboard,
@@ -152,7 +151,7 @@ var InteractiveScrollView = React.createClass({
 
   focusNode(node:any, focus:string) {
     // Exit early if unmounted
-    if (!ReactInstanceMap.get(node) || !ReactInstanceMap.get(this)) {
+    if (!ReactNative.findNodeHandle(node) || !ReactNative.findNodeHandle(this)) {
       return;
     }
 
@@ -240,7 +239,8 @@ class BaseInteractiveComponent extends React.Component {
   _onBlur:Function;
 
   getContext():any {
-    return ReactInstanceMap.get(this)._context;
+    // TODO: contextTypes
+    return this.context;
   }
 
   _onFocus() {
