@@ -1,7 +1,7 @@
 {
   "name": "React Native for Curious People",
   "description": "Interactive articles about React Native, written in React Native.",
-  "slug": "react-native-for-curious-people",
+  "slug": "rnfcp",
   "privacy": "public",
   "sdkVersion": "15.0.0",
   "version": "1.1.0",
