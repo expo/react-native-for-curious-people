@@ -8,10 +8,9 @@ import React from 'react';
 import {
   Text,
   StyleSheet,
+  Linking,
   NativeModules,
 } from 'react-native';
-
-let { EXURLHandler } = NativeModules;
 
 import Colors from 'Colors';
 
@@ -27,7 +26,7 @@ export default class Link extends React.Component {
   }
 
   _handlePress() {
-    EXURLHandler.openURLAsync(this.props.url);
+    Linking.openURL(this.props.url);
   }
 }
 
