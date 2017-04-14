@@ -179,7 +179,7 @@ export default class TextInputArticle extends React.Component {
           <LiveRewriteCursorPosition />
 
           <Text style={styles.attribution}>
-            Made for <Text style={styles.expo}>EXPO</Text>
+            Made with <Text style={styles.expo}>Expo</Text>
           </Text>
         </View>
       );
@@ -241,7 +241,6 @@ let styles = StyleSheet.create({
   },
   expo: {
     color: '#777',
-    fontWeight: '200',
-    letterSpacing: 3,
+    fontWeight: '700',
   },
 });
